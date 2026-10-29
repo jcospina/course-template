@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "preset": "node",
+  "title": "node-api",
+  "sources": {
+    "/index.js": "files/index.js"
+  },
+  "solutionSources": {
+    "/index.js": "solution/index.js"
+  },
+  "verification": {
+    "starterChecks": "fail",
+    "rejectedSources": {
+      "/index.js": "rejected/index.js"
+    }
+  },
+  "server": {
+    "port": 3000,
+    "startPath": "/hello"
+  },
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/hello"
+    },
+    {
+      "method": "GET",
+      "path": "/missing"
+    }
+  ],
+  "checks": {
+    "kind": "node-http",
+    "httpCases": [
+      {
+        "name": "Greeting endpoint",
+        "request": {
+          "method": "GET",
+          "path": "/hello"
+        },
+        "status": 200,
+        "headers": {
+          "content-type": "application/json"
+        },
+        "body": "{\"greeting\":\"Hello\"}"
+      },
+      {
+        "name": "Unknown route",
+        "request": {
+          "method": "GET",
+          "path": "/missing"
+        },
+        "status": 404,
+        "body": "{\"error\":\"Not found\"}"
+      }
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "preset": "custom-web",
+  "sources": {
+    "/index.mjs": "files/index.mjs",
+    "/helper.mjs": "files/helper.mjs",
+    "/package.json": "files/package.json"
+  },
+  "project": {
+    "environment": "node",
+    "entry": "/index.mjs",
+    "activeFile": "/index.mjs",
+    "output": "console"
+  },
+  "verification": {
+    "steps": [
+      {
+        "action": "console",
+        "text": "ESM multi-file proof"
+      }
+    ]
+  }
+}

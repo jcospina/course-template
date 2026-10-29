@@ -1,0 +1,7 @@
+UPDATE changes every row satisfying its WHERE clause. Without the clause it changes the entire table. A transaction groups statements so a failure can prevent a partial committed change. In this workbench every Run begins from the seed; two different Runs are separate databases, not a persistent session.
+
+<CodeExercise example="restock" prompt="Add two units only to the item named Pen. Preserve every other stock value.">Use UPDATE items SET stock = stock + 2 WHERE name = 'Pen'. State checks inspect all rows after the attempt, so a repair that changes every item fails. Each inspection uses an isolated seeded database and a read-only transaction.</CodeExercise>
+
+<Exercise prompt="Without the prior query, describe a transfer of one unit between two items. What should happen if the second update fails?">Put the related updates in one transaction and commit only after both succeed. Otherwise one row can lose a unit while the receiving row never gains it. State and test a nonnegative-stock rule separately; transactions alone do not invent that rule.</Exercise>
+
+Review PostgreSQL's [transaction tutorial](https://www.postgresql.org/docs/current/tutorial-transactions.html). On a later visit, reconstruct a SELECT predicate and a bounded UPDATE without looking back, then test a changed seed.

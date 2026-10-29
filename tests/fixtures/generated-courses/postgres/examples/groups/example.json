@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "preset": "postgres",
+  "title": "groups",
+  "sources": {
+    "/query.sql": "files/query.sql"
+  },
+  "verification": {
+    "steps": [
+      {
+        "action": "sql",
+        "text": "office"
+      },
+      {
+        "action": "sql",
+        "text": "5"
+      }
+    ]
+  },
+  "database": {
+    "seed": "data/seed.sql"
+  }
+}

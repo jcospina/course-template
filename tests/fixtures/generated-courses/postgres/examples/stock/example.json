@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "preset": "postgres",
+  "title": "stock",
+  "sources": {
+    "/query.sql": "files/query.sql"
+  },
+  "checks": {
+    "kind": "sql-result",
+    "cases": [
+      {
+        "name": "positive stock",
+        "statement": 0,
+        "columns": [
+          "name"
+        ],
+        "rows": [
+          [
+            "Pen"
+          ],
+          [
+            "Book"
+          ]
+        ]
+      }
+    ]
+  },
+  "verification": {
+    "starterChecks": "fail",
+    "rejectedSources": {
+      "/query.sql": "rejected/query.sql"
+    }
+  },
+  "solutionSources": {
+    "/query.sql": "solution/query.sql"
+  },
+  "database": {
+    "seed": "data/seed.sql"
+  }
+}

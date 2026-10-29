@@ -1,0 +1,106 @@
+<Lead>
+  You can run JavaScript, TypeScript, React, and Node.js examples inside a
+  lesson. The output stays beside the code, so you can change one thing and
+  compare what happens without opening developer tools.
+</Lead>
+
+## Predict, then run
+
+Each editor waits for **Run code**. Editing does not rerun the example.
+Use **Clear output** to clear logs, **Stop** to release its runtime, or
+**Reset code** to restore the starter. Reset also stops the current run.
+Your edits last until you leave or reload this lesson.
+
+Before running this JavaScript example, predict which part of the code adds
+its message to `order` last. Then compare your prediction with the console.
+
+<Playground title="JavaScript timing" template="vanilla" code={`const order = [];
+order.push("synchronous start");
+Promise.resolve().then(() => order.push("microtask"));
+setTimeout(() => {
+  order.push("timer");
+  console.log("Order:", order);
+}, 0);
+order.push("synchronous end");`} />
+
+The synchronous statements finish first. The promise callback runs as a
+microtask; the timer callback runs in a later task. Move the second
+`order.push` into the promise callback, predict the new order, and run again.
+
+## Check types and behavior separately
+
+TypeScript can reject a program that still produces output after its types are
+removed. **Check types** runs the TypeScript compiler against the whole example;
+**Run code** executes it. Try both on this starter, then repair the assignment.
+
+<Playground title="TypeScript values" template="vanilla-ts" code={`const attempts: number = "3";
+console.log("Next attempt:", attempts + 1);`} />
+
+Type checks use the installed TypeScript and React declarations. If your example
+imports another package, include its declarations in `files`; the checker does
+not fetch arbitrary package types. Missing declarations appear as diagnostics.
+
+## React across two files
+
+This example separates the greeting function from the component. Edit
+`greet.ts`, press **Run code**, and inspect the preview. Click a name to send
+an object to the console. **Check types** also checks the import between files.
+
+<Playground preset="react-ts" title="React greeting" files={{
+  "/App.tsx": `import { greet } from "./greet";
+export default function App() {
+  return <div style={{ padding: 20, fontFamily: "system-ui" }}>
+    {["Ada", "Alan", "Grace"].map(name =>
+      <button key={name} onClick={() => console.log("Selected:", { name })}>
+        {greet(name)}
+      </button>
+    )}
+  </div>;
+}`,
+  "/greet.ts": `export function greet(name: string): string {
+  return "Hello, " + name + "!";
+}`,
+}} />
+
+A single file is enough for most examples. Add another when following an import
+or dividing responsibilities is part of the lesson.
+
+## Node.js in the console
+
+The Node template runs through Sandpack's browser-based Nodebox runtime. It
+supports a subset of Node APIs and npm packages; it does not access your computer's
+filesystem. Use it for compatible Node examples and verify the APIs you teach.
+
+This example uses CommonJS and Node's assertion library. Change the input to
+break the assertion, then inspect the error in the console.
+
+<Playground title="Node assertions" template="node" code={`const path = require("path");
+const assert = require("assert");
+const filename = path.basename("/lessons/intro.js");
+console.log("Filename:", filename);
+assert.strictEqual(filename, "intro.js");
+console.log("PASS: extracts the filename");`} />
+
+## Verify a repair
+
+The [average exercise](/learn/first-principles) includes **Check solution**.
+It runs the author's tests on your current code and shows individual failures.
+After editing, run checks again: an earlier pass says nothing about the new code.
+A passing test set covers those cases; explaining the fix and handling a new case
+are separate parts of learning.
+
+<Exercise difficulty="core" prompt={<>Without looking at the first example, explain why the promise callback runs before the timer callback. Then design a different example that would check the same idea.</>}>
+  The current synchronous work completes before the browser drains microtasks.
+  A timer schedules a later task. Your new example should preserve that ordering
+  while changing the values or the code around it. Run your example after you
+  predict its output, then explain any mismatch.
+</Exercise>
+
+<KeyTakeaways>
+  - Choose `vanilla` for JavaScript, `vanilla-ts` for TypeScript, `react` or `react-ts` for React, and `node` for compatible Node.js examples.
+  - Run code and read its output in the lesson. Edits wait for your next run.
+  - Type errors and failing behavior checks answer different questions.
+  - Later, solve a changed example without the worked solution to check what you retained.
+</KeyTakeaways>
+
+

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "preset": "typescript",
+  "title": "typescript",
+  "sources": {
+    "/index.ts": "files/index.ts"
+  },
+  "verification": {
+    "steps": [
+      {
+        "action": "console",
+        "text": "Hello TypeScript"
+      }
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "preset": "node",
+  "title": "health",
+  "sources": {
+    "/index.js": "files/index.js"
+  },
+  "checks": {
+    "kind": "node-http",
+    "httpCases": [
+      {
+        "name": "health JSON",
+        "request": {
+          "method": "GET",
+          "path": "/health"
+        },
+        "status": 200,
+        "headers": {
+          "content-type": "application/json"
+        },
+        "body": "{\"ok\":true}"
+      },
+      {
+        "name": "unknown route",
+        "request": {
+          "method": "GET",
+          "path": "/missing"
+        },
+        "status": 404,
+        "body": "Not found"
+      }
+    ]
+  },
+  "verification": {
+    "starterChecks": "fail",
+    "rejectedSources": {
+      "/index.js": "rejected/index.js"
+    }
+  },
+  "solutionSources": {
+    "/index.js": "solution/index.js"
+  },
+  "server": {
+    "port": 3000,
+    "startPath": "/health"
+  },
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/health"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+An API handler combines input selection with a result. Put deterministic calculations in a separate function so cases can exercise the contract without starting a server. CommonJS exports identify the values another file can require.
+
+<CodeExercise example="price" prompt="Repair total so it multiplies a unit price by quantity, including zero.">Adding the operands happens to match some values but breaks the contract. Multiplication is the relationship being requested. The checks register named cases with ordinary Node assertions; printed PASS text is never a verdict.</CodeExercise>
+
+<Exercise prompt="Should total accept a negative quantity? State a policy before adding a check.">The arithmetic function can multiply signed values, but an order API may reject negative quantities at its input boundary. State that application rule explicitly, then test rejection rather than silently coercing negative input to zero.</Exercise>

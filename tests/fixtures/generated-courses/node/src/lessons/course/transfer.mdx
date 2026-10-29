@@ -1,0 +1,5 @@
+Without copying the health handler, design GET /orders and specify which requests fail. Include the wrong method, an unknown path, and an empty collection. Decide whether query parameters affect routing; checking the raw URL and checking its pathname make different contracts.
+
+<Exercise prompt="A handler sends 200 for every request. Why can one happy-path check miss the bug?">The happy path asks only whether one supported request succeeds. It cannot establish the rejection rule for other requests. Add a wrong-method and missing-path case, then inspect whether either branch can fail to end the response.</Exercise>
+
+Stop and rerun before testing a changed handler. Explain how a fresh virtual filesystem differs from a production database. In a later session, reconstruct the response's three parts from memory and implement a changed route without revealing the earlier solution.

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "preset": "node",
+  "sources": {
+    "/index.js": "files/index.js",
+    "/helper.cjs": "files/helper.cjs"
+  },
+  "dependencies": {
+    "lodash": "4.17.21"
+  },
+  "verification": {
+    "steps": [
+      {
+        "action": "console",
+        "text": "packageProof"
+      },
+      {
+        "action": "console",
+        "text": "stream proof"
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "preset": "javascript",
+  "sources": {
+    "/index.js": "files/index.js"
+  },
+  "checks": {
+    "kind": "browser-jest",
+    "sources": {
+      "/empty.test.js": "checks/empty.test.js"
+    }
+  }
+}

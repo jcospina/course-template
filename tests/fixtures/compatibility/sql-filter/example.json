@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "preset": "postgres",
+  "title": "Filter customers by city",
+  "sources": {
+    "/query.sql": "files/query.sql"
+  },
+  "database": {
+    "seed": "data/seed.sql"
+  },
+  "solutionSources": {
+    "/query.sql": "solution/query.sql"
+  },
+  "checks": {
+    "kind": "sql-result",
+    "cases": [
+      {
+        "name": "Returns both matching customers",
+        "statement": 0,
+        "columns": [
+          "name"
+        ],
+        "rows": [
+          [
+            "Ada"
+          ],
+          [
+            "Lin"
+          ]
+        ],
+        "ordered": false
+      }
+    ]
+  },
+  "verification": {
+    "starterChecks": "fail",
+    "rejectedSources": {
+      "/query.sql": "rejected/query.sql"
+    }
+  }
+}

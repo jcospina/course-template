@@ -1,0 +1,73 @@
+<Lead>
+  This course pairs explanations with code you can run and change. Use the
+  examples to test your reasoning, then try the exercises and compare your
+  approach with the worked solutions.
+</Lead>
+
+## Learn the mechanism
+
+The samples assume you can read variables, functions, and loops in JavaScript.
+The React counter also assumes you have used `useState`; the SQL and HTTP
+exercises assume you know basic queries and response status codes. If one of
+those topics is new, start with its prerequisites before attempting the repair.
+
+<Callout variant="why" title="Explain the next step">
+  When you can explain why a line produces its result, try changing the input.
+  Predicting what happens in the changed case helps you check whether your
+  explanation applies beyond the first example.
+</Callout>
+
+## Run and inspect the code
+
+Press **Run code** below. Then change `name`, predict the greeting, and run it
+again. Editing leaves the previous preview visible until you run again. Logs and errors appear in the lesson's
+console, so you can inspect them without opening developer tools.
+
+<Playground title="React greeting in JavaScript" preset="react" code={`export default function App() {
+  const name = "you";
+  return <p style={{ fontFamily: "system-ui", padding: 16 }}>Hello, {name}!</p>;
+}`} editorHeight={240} />
+
+**Stop** releases the running example and keeps your edits. **Reset code** stops
+it and restores the starter. Editor changes are temporary; they reset when you
+leave or reload the lesson.
+
+<Predict question="If you change name in the editor, when will the greeting in the preview change?">
+  It changes after you press **Run code**. Until then, the preview shows the
+  result of the previous run. You can predict the new result before observing it.
+</Predict>
+
+## Use feedback to revise your explanation
+
+Quizzes explain why each option does or does not fit. Read the feedback even
+when you choose the correct answer; your reasoning may differ from the mechanism
+the lesson is teaching.
+
+<Quiz question="How could you check your explanation of a code example?" choices={[
+  { label: "Read the result and move on", feedback: "That shows the result, but it does not check whether you can explain or predict another case." },
+  { label: "Change an input, predict the result, then run it", correct: true, feedback: "Compare the observed result with your prediction and explain any difference. If the results differ, trace the changed input through the code." },
+  { label: "Treat a passing test as proof of full understanding", feedback: "A test checks particular behavior. Explaining the code and solving a new case require further work." },
+]} />
+
+Exercises let you attempt a task before revealing its worked explanation. If you
+are stuck, use the solution to learn the missing step, then try a changed case
+without looking back. Coding exercises may include **Check solution**, which
+runs the author's tests against your edits. TypeScript examples also offer
+**Check types**. **Check types** reports type errors; **Check solution** checks behavior on the supplied cases.
+
+## Track progress and return to earlier ideas
+
+Use **Mark complete** to record where you have been. The sidebar saves that
+progress in your browser and synchronizes open tabs. There is no login.
+Running code loads Sandpack's hosted runtime and may fetch npm packages; keep
+secrets out of playgrounds.
+
+Later, explain a lesson's main idea or solve a changed example without the
+solution. Compare your answer with the solution to find what you need to revisit.
+
+<KeyTakeaways>
+  - Predict a result, run the example, and explain any difference.
+  - Use feedback and worked solutions to repair missing steps in your reasoning.
+  - Distinguish running code, checking types, passing tests, and understanding.
+  - Saved progress records completed lessons; later practice checks what you retained.
+</KeyTakeaways>

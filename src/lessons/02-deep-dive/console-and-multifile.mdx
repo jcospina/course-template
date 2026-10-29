@@ -1,0 +1,143 @@
+<Lead>
+  Run JavaScript, TypeScript, React, Node.js, and PostgreSQL examples, then
+  inspect their output beside the editor. These samples assume you can read
+  JavaScript callbacks and imports; the later exercises use basic SQL and HTTP.
+</Lead>
+
+## Predict, then run
+
+Each editor waits for **Run code**. Editing does not rerun the example.
+Use **Clear output** to clear logs, **Stop** to release its runtime, or
+**Reset code** to restore the starter. Reset also stops the current run.
+Your edits last until you leave or reload this lesson.
+
+Before running this JavaScript example, predict which part of the code adds
+its message to `order` last. Then compare your prediction with the console.
+
+<Playground title="JavaScript timing" preset="javascript" code={`const order = [];
+order.push("synchronous start");
+Promise.resolve().then(() => order.push("microtask"));
+setTimeout(() => {
+  order.push("timer");
+  console.log("Order:", order);
+}, 0);
+order.push("synchronous end");`} />
+
+The synchronous statements finish first. The promise callback runs as a
+microtask; the timer callback runs in a later task. Move `order.push("synchronous end")` into the promise callback, predict
+the new order, and run again.
+
+## Check types and behavior separately
+
+TypeScript can reject a program that still produces output after its types are
+removed. **Check types** runs the TypeScript compiler against the whole example;
+**Run code** executes it. Try both on this starter, then repair the assignment.
+
+<Playground title="TypeScript values" preset="typescript" code={`const attempts: number = "3";
+console.log("Next attempt:", attempts + 1);`} />
+
+Type checks use the installed TypeScript and React declarations. If your example
+imports another package, include its declarations in `files`; the checker does
+not fetch arbitrary package types. Missing declarations appear as diagnostics.
+
+## React across two files
+
+This example separates the greeting function from the component. Edit
+`greet.ts`, press **Run code**, and inspect the preview. Click a name to send
+an object to the console. **Check types** also checks the import between files.
+
+<Playground preset="react-ts" title="React greeting" files={{
+  "/App.tsx": `import { greet } from "./greet";
+export default function App() {
+  return <div style={{ padding: 20, fontFamily: "system-ui" }}>
+    {["Ada", "Alan", "Grace"].map(name =>
+      <button key={name} onClick={() => console.log("Selected:", { name })}>
+        {greet(name)}
+      </button>
+    )}
+  </div>;
+}`,
+  "/greet.ts": `export function greet(name: string): string {
+  return "Hello, " + name + "!";
+}`,
+}} />
+
+Here, `/App.tsx` imports `greet` from `/greet.ts`. Changing the greeting in
+`greet.ts` changes all three button labels on the next run.
+
+## Node.js in the console
+
+The Node template runs through Sandpack's browser-based Nodebox runtime. It
+supports a subset of Node APIs and npm packages; it does not access your computer's
+filesystem. Use it for compatible Node examples and verify the APIs you teach.
+
+This example uses CommonJS and Node's assertion library. Change the input to
+break the assertion, then inspect the error in the console.
+
+<Playground title="Node assertions" preset="node" code={`const path = require("path");
+const assert = require("assert");
+const filename = path.basename("/lessons/intro.js");
+console.log("Filename:", filename);
+assert.strictEqual(filename, "intro.js");
+console.log("PASS: extracts the filename");`} />
+
+## Verify a repair
+
+The [average exercise](/learn/first-principles) includes **Check solution**.
+It runs the author's tests on your current code and shows individual failures.
+After editing, run checks again: an earlier pass says nothing about the new code.
+To revisit the repair, predict the average of `[3, -1, 5]`, then run it
+and explain how the function gets that result.
+
+<Exercise difficulty="core" prompt={<>Without looking at the first example, explain why the promise callback runs before the timer callback. Then design a different example that would check the same idea.</>}>
+  The current synchronous work completes before the browser drains microtasks.
+  A timer schedules a later task. Your new example should preserve that ordering
+  while changing the values or the code around it. Run your example after you
+  predict its output, then explain any mismatch.
+</Exercise>
+
+
+
+
+## Query a fresh PostgreSQL database
+
+This exercise uses PostgreSQL. Every Run starts with the same three customers,
+so changing data in one attempt cannot affect the next. The result checker compares
+column labels and values, including duplicate rows; row order is ignored here.
+
+<CodeExercise example="sql-filter" prompt="Return the names of all customers who live in Bogotá.">
+  `WHERE` filters the rows before `SELECT` returns the requested column. Ada and
+  Lin both live in Bogotá, so selecting only the first match is incomplete.
+  Try filtering for the other city and predict which name the query returns.
+</CodeExercise>
+
+## Check a Node function
+
+Each assertion check runs against fresh virtual files. Read the named case
+results to see whether the function passed; a logged "PASS" message alone
+does not tell you whether the assertions ran.
+
+<CodeExercise example="node-double" prompt="Repair double so it doubles positive, zero, and negative inputs.">
+  Multiplication preserves a negative input's sign. Adding two or taking an
+  absolute value fails one of the cases. Try a decimal before explaining your repair.
+</CodeExercise>
+
+## Inspect an HTTP response
+
+This server listens inside its browser runtime. Send a request to `/hello` using
+the request panel, inspect its status and body, then try `/missing`. Each example runs its own server inside the sandbox, so examples can share
+the declared port.
+
+<CodeExercise example="node-api" prompt="Return a Hello greeting at /hello and a 404 JSON error for every other path.">
+  The route check selects the greeting response. Setting statusCode to 404 on
+  the other branch distinguishes a missing resource from a successful response.
+  Both branches call `res.end()` to finish the response; otherwise, the request
+  would keep waiting.
+</CodeExercise>
+
+<KeyTakeaways>
+  - Run code to inspect its output; edits wait for the next run.
+  - Check types for type errors and check solutions for the supplied behavior cases.
+  - Each PostgreSQL run starts from the seed; Node servers run inside the sandbox.
+  - Revisit a repair with a changed input and explain the result before running it.
+</KeyTakeaways>

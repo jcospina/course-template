@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "preset": "react",
+  "title": "react",
+  "sources": {
+    "/App.js": "files/App.js",
+    "/message.js": "files/message.js"
+  },
+  "verification": {
+    "steps": [
+      {
+        "action": "preview",
+        "text": "Count: 0"
+      },
+      {
+        "action": "click",
+        "role": "button",
+        "name": "Count: 0"
+      },
+      {
+        "action": "preview",
+        "text": "Count: 1"
+      }
+    ]
+  },
+  "dependencies": {
+    "lodash-es": "4.17.21"
+  }
+}

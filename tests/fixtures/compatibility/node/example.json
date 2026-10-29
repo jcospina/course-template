@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "preset": "node",
+  "title": "node",
+  "sources": {
+    "/index.js": "files/index.js"
+  },
+  "verification": {
+    "steps": [
+      {
+        "action": "console",
+        "text": "intro.js"
+      }
+    ]
+  }
+}

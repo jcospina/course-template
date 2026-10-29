@@ -1,0 +1,1 @@
+const http=require("node:http");http.createServer((req,res)=>{if(req.method==="GET" && req.url==="/health"){res.setHeader("content-type","application/json");res.end(JSON.stringify({ok:true}));}else{res.statusCode=404;res.end("Not found");}}).listen(3000);

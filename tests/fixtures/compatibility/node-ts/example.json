@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "preset": "node-ts",
+  "title": "node-ts",
+  "sources": {
+    "/index.ts": "files/index.ts"
+  },
+  "verification": {
+    "steps": [
+      {
+        "action": "console",
+        "text": "intro.ts"
+      }
+    ]
+  }
+}

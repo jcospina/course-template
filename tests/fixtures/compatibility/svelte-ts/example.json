@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "preset": "svelte-ts",
+  "title": "svelte-ts",
+  "sources": {
+    "/src/App.svelte": "files/src/App.svelte",
+    "/src/message.js": "files/src/message.js"
+  },
+  "verification": {
+    "steps": [
+      {
+        "action": "preview",
+        "text": "Count: 0"
+      },
+      {
+        "action": "click",
+        "role": "button",
+        "name": "Count: 0"
+      },
+      {
+        "action": "preview",
+        "text": "Count: 1"
+      }
+    ]
+  },
+  "dependencies": {
+    "lodash-es": "4.17.21"
+  }
+}

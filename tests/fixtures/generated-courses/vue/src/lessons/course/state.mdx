@@ -1,0 +1,7 @@
+A ref wraps a value in an object whose value property participates in Vue's reactivity. The template reads that state during rendering. Updating it schedules a view update; a plain local number has no equivalent reactive connection.
+
+<Playground example="counter" />
+
+Predict what three clicks will display. In script, count.value accesses the wrapped number; the template unwraps a top-level ref. Change the increment to two and compare your prediction with Run. Reset returns the authored starter, not the last edited code.
+
+<Exercise prompt="Explain why replacing count.value++ with let ordinary = 0; ordinary++ cannot drive this template.">The displayed expression still reads count. A separate local variable neither changes that dependency nor supplies reactive invalidation. Put the state you want to display in the ref, then update that state.</Exercise>

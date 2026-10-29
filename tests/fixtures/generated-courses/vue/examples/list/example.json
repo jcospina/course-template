@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "preset": "vue-ts",
+  "title": "list",
+  "sources": {
+    "/src/App.vue": "files/src/App.vue",
+    "/src/filter.ts": "files/src/filter.ts"
+  },
+  "verification": {
+    "steps": [
+      {
+        "action": "preview",
+        "text": "Visible: 3"
+      },
+      {
+        "action": "click",
+        "role": "button",
+        "name": "Show short"
+      },
+      {
+        "action": "preview",
+        "text": "Visible: 2"
+      }
+    ]
+  }
+}

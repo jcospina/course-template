@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "preset": "node",
+  "sources": {
+    "/index.js": "files/index.js"
+  },
+  "checks": {
+    "kind": "node-assert",
+    "sources": {
+      "/empty.test.js": "checks/empty.test.js"
+    }
+  }
+}

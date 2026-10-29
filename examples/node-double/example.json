@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "preset": "node",
+  "title": "node-double",
+  "sources": {
+    "/index.js": "files/index.js"
+  },
+  "solutionSources": {
+    "/index.js": "solution/index.js"
+  },
+  "verification": {
+    "starterChecks": "fail",
+    "rejectedSources": {
+      "/index.js": "rejected/index.js"
+    }
+  },
+  "checks": {
+    "kind": "node-assert",
+    "sources": {
+      "/checks/double.test.js": "checks/double.test.js"
+    }
+  }
+}

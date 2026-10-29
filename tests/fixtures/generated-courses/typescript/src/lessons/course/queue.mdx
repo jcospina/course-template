@@ -1,0 +1,7 @@
+A queue removes the earliest remaining item. Calling shift produces that behavior, but repeatedly moving array elements may add work as the queue grows. A head index avoids explicitly moving the remaining entries on each removal; it needs a policy for reclaiming old slots.
+
+<Playground example="queue" />
+
+Predict the two removed values before Run. Enqueue another value after the first removal, then trace which array position the head identifies. The invariant is that positions before head have been consumed; the next live value is at head when head is smaller than length.
+
+<Exercise prompt="Design a compaction rule and explain when it may cost linear work.">Copy the live suffix only when the consumed prefix is large relative to live entries. One compaction costs proportional to the copied suffix; spreading that work across many dequeues supports an amortized analysis. A ring buffer instead reuses slots with wrapped indices and a separate size.</Exercise>

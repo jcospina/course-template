@@ -1,0 +1,5 @@
+Without reopening the previous example, sketch a cart with a reactive quantity and a computed subtotal. Then implement it by editing the counter. Predict the subtotal for quantity zero and after two increments before running.
+
+<Exercise prompt="A cart computes subtotal once during setup and never changes it again. Diagnose the failure and write a repair in words.">A plain calculation captures a value at that moment. Use a computed getter that reads the current reactive quantity and price. Keep price editable only if the task requires it, and name the rounding policy separately from reactivity. Test changing quantity in both directions.</Exercise>
+
+Explain why a passing visual demonstration on one click does not establish every edge case. On a later visit, reconstruct the dependency chain and test a new initial value without consulting the worked example.

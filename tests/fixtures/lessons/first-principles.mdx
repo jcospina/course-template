@@ -1,0 +1,215 @@
+<Lead>
+  A useful lesson connects an explanation to something the reader can do.
+  This example shows how to introduce a mechanism, ask a focused question,
+  and give feedback on a repair. As you read, notice what each teaching
+  component contributes. You can reuse these patterns in your own lessons.
+</Lead>
+
+## Give the reader a starting point
+
+Choose a starting point that fits the prerequisites. A reader who has used a
+loop can follow a running total directly: each iteration adds its input to the
+value left by the previous iteration. A reader who has never seen assignment
+may need a trace of those updates first.
+
+<Callout variant="analogy" title="A comparison with a limit">
+  A running total resembles a shopping subtotal: each new item adds to the
+  amount already there. That comparison explains accumulation. It does not
+  explain the loop syntax, which still needs a code example.
+</Callout>
+
+An analogy can introduce an unfamiliar idea, but it should not replace the
+mechanism. Define the term when the reader has enough context to use it.
+
+<Callout variant="insight" title="The mechanism">
+  An <Term>accumulator</Term> holds a result between iterations. Each iteration
+  reads that result, updates it, and leaves the new value for the next one.
+</Callout>
+
+## Connect a rule to its consequence
+
+For a running total, initialize the accumulator before the loop. If you reset it
+inside the loop, each iteration discards the earlier sum. The location of that
+assignment changes the result.
+
+<Callout variant="why" title="Why explain the consequence?">
+  A reader who can trace the reset has a way to diagnose the mistake in another
+  loop. Give them a changed example later to check whether they can do that
+  without the explanation in front of them.
+</Callout>
+
+<Callout variant="pitfall" title="Make the missing step visible">
+  Do not assume the reader knows what <code>total += n</code> does. It adds
+  <code>n</code> to the current total and saves the result back into
+  <code>total</code>. A short trace can expose that step without interrupting
+  readers who already know it.
+</Callout>
+
+## Ask for a prediction and a reason
+
+Trace the value of `total` after each callback. Write down your prediction
+before opening the explanation.
+
+```js
+let total = 0;
+[1, 2, 3].forEach((n) => {
+  total += n;
+});
+console.log(total);
+```
+
+<Predict question="What does this log? Explain how the value changes.">
+
+  It logs **6**. `forEach` runs the callback once per element, and each call adds
+  the current number to `total`: 0 → 1 → 3 → 6.
+
+  If you predicted a different value, compare each step with your trace. Then
+  try a new input without looking at the explanation. The prediction gives you
+  something to check; opening the reveal does not establish understanding.
+</Predict>
+
+## Let the reader change one thing
+
+A playground lets the reader test an explanation. Give the edit a purpose so
+they know what to look for. In this React example, predict the count after two
+clicks. Run the code and check your answer. Then change `step` to `5`, rerun,
+and predict again before clicking.
+
+<Playground preset="react-ts" title="A counter with a changeable step" code={`import { useState } from "react";
+
+export default function App() {
+  const [count, setCount] = useState(0);
+  const step = 1;
+
+  return (
+    <div style={{ fontFamily: "system-ui", padding: 20 }}>
+      <p style={{ fontSize: 32, margin: "0 0 12px" }}>{count}</p>
+      <button onClick={() => setCount(count + step)}>
+        Add {step}
+      </button>
+    </div>
+  );
+}`} editorHeight={300} />
+
+Each click adds `step` to the count shown in the current render. Running the
+editor again starts a fresh preview, so its count returns to zero. This example
+assumes the reader has met React state; a lesson about state itself would need
+to explain how the update produces another render.
+
+<Callout variant="note" title="Choose the runtime for the example">
+  This playground uses the explicit React TypeScript preset. For a loop that
+  only logs a value, use <code>vanilla</code> or <code>vanilla-ts</code>.
+  The <a href="/learn/console-and-multifile">next sample lesson</a> demonstrates
+  JavaScript, TypeScript, React, and Node with output beside the editor.
+</Callout>
+
+## Make quiz feedback explain the mistake
+
+A wrong answer is useful when it reveals a plausible misunderstanding. Give
+feedback on the reasoning behind each choice, then invite the reader to apply
+the explanation to a changed case.
+
+<Quiz
+  question="A loop starts with total = 0. Inside every iteration, it resets total to 0 before adding the current input. What remains after processing [2, 4, 6]?"
+  choices={[
+    { label: "12", feedback: "That would be the sum if the initialization stayed outside the loop. Here, each reset discards the previous total." },
+    { label: "6", correct: true, feedback: "The final iteration resets total to zero and adds 6. Earlier inputs no longer contribute. Try tracing [6, 4, 2] to check the same mechanism." },
+    { label: "0", feedback: "The reset happens before the addition. The final input is still added after the last reset." },
+  ]}
+/>
+
+## Use a figure when the arrangement helps
+
+A figure can show the intermediate states that prose asks the reader to track.
+This trace keeps the initialization outside the loop.
+
+<Figure caption="Each input adds to the total left by the previous step." label="Running total">
+  <div style={{ display: "flex", flexWrap: "wrap", gap: 8, fontFamily: "system-ui", textAlign: "center" }}>
+    {["Start: 0", "Add 2: 2", "Add 4: 6", "Add 6: 12"].map((step) => (
+      <div key={step} style={{ flex: "1 1 110px", padding: "14px 8px", borderRadius: 8, background: "var(--accent-soft)", color: "var(--accent-ink)" }}>{step}</div>
+    ))}
+  </div>
+</Figure>
+
+## Ask for an explanation without the example
+
+Use `Exercise` when the task asks for reasoning rather than a code change.
+Keep its worked explanation available to readers who need help.
+
+<Exercise
+  difficulty="core"
+  prompt={<>Without looking back, explain where to initialize a total that should include every input. Then trace <code>[3, -1, 5]</code> to support your answer.</>}
+>
+
+  Initialize the total to zero before entering the loop. The values then become
+  3, 2, and 7. The negative input reduces the accumulated total; it does not
+  reset it. Initializing inside each iteration would discard the earlier inputs
+  and leave only 5.
+
+  If you remembered the location but could not explain it, trace the reset
+  version too. Comparing the two traces shows which values survive each step.
+</Exercise>
+
+## Check a repair against stated behavior
+
+Use `CodeExercise` for a task that requires runnable code. The prompt below
+states what the function should return, while the starter leaves the diagnosis
+to the reader. Its checks cover several inputs. You can inspect output, run the
+checks, and compare your repair with the worked solution when you need it.
+
+<CodeExercise
+  difficulty="warm-up"
+  template="vanilla"
+  solutionLang="js"
+  tests={{ "/average.test.js": `import { average } from "./index";
+test("averages a list", () => expect(average([2, 4, 6])).toBe(4));
+test("handles a single value", () => expect(average([7])).toBe(7));
+test("handles negative values", () => expect(average([-6, 0])).toBe(-3));` }}
+  showConsole
+  showPreview={false}
+  prompt={<>Fix <code>average</code> so it returns the mean of the list. <strong>Run code</strong> to inspect its output, then use <strong>Check solution</strong>. Handle nonempty lists, including negative values.</>}
+  buggy={`export function average(nums) {
+  let total = 0;
+  for (const n of nums) total += n;
+  return total;
+}
+
+console.log("average([2, 4, 6]) =", average([2, 4, 6]));`}
+  solution={`export function average(nums) {
+  let total = 0;
+  for (const n of nums) total += n;
+  return total / nums.length;
+}
+
+console.log("average([2, 4, 6]) =", average([2, 4, 6])); // 4`}
+>
+
+  The loop computes the sum, but the starter returns that sum as the average.
+  For `[2, 4, 6]`, it returns 12 instead of 4. Dividing the sum by the number of
+  inputs gives the mean.
+
+  This exercise asks for nonempty lists. An empty list would require a separate
+  decision about the function's contract. Passing these three checks confirms
+  those cases; it does not prove every possible input is handled.
+</CodeExercise>
+
+## Connect the practice to a real task
+
+The learner's goal should help you choose an example. Someone checking an
+analytics report might need to distinguish a sum from an average. Someone
+learning React might need to explain why a rerender changes the visible count.
+Keep that goal concrete instead of adding a generic claim of importance.
+
+<Callout variant="interview" title="Explain a repair to another person">
+  After fixing a function, describe the faulty behavior, the change you made,
+  and the case you used to check it. That explanation gives a reviewer evidence
+  to assess. The same exercise can prepare a learner for a code review or a
+  technical interview.
+</Callout>
+
+<KeyTakeaways>
+  - Start from the reader's prerequisites and explain the mechanism they need.
+  - Give each prediction, edit, or question a result the reader can inspect.
+  - Use feedback to connect a mistake to its cause and repair.
+  - Revisit the idea with a changed problem to check independent understanding.
+</KeyTakeaways>

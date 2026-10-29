@@ -1,0 +1,9 @@
+A derived value expresses a relationship: the displayed list contains the original values that meet the current condition. If you separately store the list and its count, every update must keep both consistent. A computed getter derives the count from the same reactive inputs as the view.
+
+<Playground example="list" />
+
+Before Run, predict how many items remain after Show short. The predicate lives in a separate ordinary file; importing it does not make it reactive. The computed getter reads reactive state and calls the predicate to calculate a result.
+
+<Exercise prompt="Add a second filter for names starting with A, without storing a second count. Explain the dependency chain.">Keep the filter choice in state and derive a filtered array from that choice and the source array. Derive count from the filtered array's length. Changing a source invalidates its dependent computation. A computed getter should calculate, not perform unrelated mutations.</Exercise>
+
+Vue's [computed guide](https://vuejs.org/guide/essentials/computed.html) explains the reactive dependency and caching model. The playground compiles SFC TypeScript, but offers no framework semantic checker or automated exercise verdict.

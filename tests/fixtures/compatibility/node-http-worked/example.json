@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "preset": "node",
+  "sources": {
+    "/index.js": "files/index.js",
+    "/reply.js": "files/reply.js"
+  },
+  "server": {
+    "port": 3000
+  },
+  "verification": {
+    "steps": [
+      {
+        "action": "http",
+        "request": {
+          "method": "POST",
+          "path": "/echo",
+          "headers": {
+            "x-example": "lesson"
+          },
+          "body": "sample"
+        },
+        "status": 201,
+        "headers": {
+          "content-type": "application/json"
+        },
+        "body": "{\"body\":\"sample\",\"method\":\"POST\",\"header\":\"lesson\"}"
+      }
+    ]
+  }
+}

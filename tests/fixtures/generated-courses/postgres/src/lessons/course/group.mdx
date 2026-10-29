@@ -1,0 +1,7 @@
+An aggregate combines values from several input rows. GROUP BY decides which rows contribute together. After grouping by category, one result row represents a category rather than one item. Counting rows measures items; summing stock measures units.
+
+<Playground example="groups" />
+
+Predict the total stock for each category. Change SUM(stock) to COUNT(*) and explain the unit of the new result. PostgreSQL bigint and decimal results retain precision as typed strings in this workbench; that representation is not a license to compare arbitrary numeric text with numbers.
+
+<Exercise prompt="Why can selecting an ungrouped name alongside a category total be ambiguous?">Several names may contribute to one category. The grouped result has no single chosen name unless the query specifies grouping or an aggregate that defines how to combine those names. Decide what a result row represents first.</Exercise>

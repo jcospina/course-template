@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "preset": "html-css",
+  "title": "html-css",
+  "sources": {
+    "/index.html": "files/index.html"
+  },
+  "verification": {
+    "steps": [
+      {
+        "action": "preview",
+        "text": "Hello HTML"
+      }
+    ]
+  }
+}

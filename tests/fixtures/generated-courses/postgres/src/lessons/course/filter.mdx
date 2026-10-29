@@ -1,0 +1,5 @@
+Think of WHERE as a predicate evaluated for each candidate row. Selecting name chooses the output column; it does not decide which rows qualify. A LIMIT changes how many rows can be returned, not whether the condition is true.
+
+<CodeExercise example="stock" prompt="Return names of every item with stock greater than zero.">Use WHERE stock > 0. The seed contains two qualifying rows and one zero row. LIMIT 1 appears to work when you look only at the first item, but excludes a second legitimate match. Row order is not part of this task.</CodeExercise>
+
+<Exercise prompt="How does stock >= 0 change this result? Explain before Run.">It includes the zero-stock row too. Compare the boundary values with the condition instead of memorizing a symbol. SQL NULL represents a missing value and requires a separate policy; it is not the string NULL.</Exercise>

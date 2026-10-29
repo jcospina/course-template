@@ -1,0 +1,1 @@
+API sources checked 2026-10-05: https://www.typescriptlang.org/docs/handbook/2/generics.html; https://vuejs.org/guide/essentials/computed.html; https://nodejs.org/api/http.html; https://www.postgresql.org/docs/current/tutorial-transactions.html. Browser runtime coverage is the template registry, not the host Node documentation.

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "preset": "postgres",
+  "title": "postgres",
+  "sources": {
+    "/query.sql": "files/query.sql"
+  },
+  "verification": {
+    "steps": [
+      {
+        "action": "sql",
+        "text": "Hello PostgreSQL"
+      }
+    ]
+  }
+}

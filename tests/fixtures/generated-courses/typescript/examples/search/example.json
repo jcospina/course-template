@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "preset": "typescript",
+  "title": "search",
+  "sources": {
+    "/index.ts": "files/index.ts"
+  },
+  "checks": {
+    "kind": "browser-jest",
+    "sources": {
+      "/search.test.ts": "checks/search.test.ts"
+    }
+  },
+  "verification": {
+    "starterChecks": "fail",
+    "rejectedSources": {
+      "/index.ts": "rejected/index.ts"
+    }
+  },
+  "solutionSources": {
+    "/index.ts": "solution/index.ts"
+  }
+}

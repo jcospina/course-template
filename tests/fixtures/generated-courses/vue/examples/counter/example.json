@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "preset": "vue-ts",
+  "title": "counter",
+  "sources": {
+    "/src/App.vue": "files/src/App.vue"
+  },
+  "verification": {
+    "steps": [
+      {
+        "action": "preview",
+        "text": "Count: 0"
+      },
+      {
+        "action": "click",
+        "role": "button",
+        "name": "Count: 0"
+      },
+      {
+        "action": "preview",
+        "text": "Count: 1"
+      }
+    ]
+  }
+}

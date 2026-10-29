@@ -1,0 +1,7 @@
+A stack returns the most recently pushed value. Imagine pausing one task to begin another: finishing the new task first lets you return to the previous one. The invariant is that the array's final element represents the next item to remove. Removing the first element silently changes the structure into a queue.
+
+<CodeExercise example="stack" prompt="Repair pop so pushing A then B returns B, A, then undefined. Preserve the public functions.">Use pop at the same array end as push. The empty result is undefined, not a fabricated value. A generic type keeps the element contract consistent; it does not prove the removal order. After the supplied cases pass, try two equal values and explain why both still occupy separate stack positions.</CodeExercise>
+
+Array end operations avoid the explicit shifting required by removing from the front. Treat amortized costs as a model of repeated operations, not a timing promise for this browser. A linked stack trades array storage for node allocations and pointers.
+
+<Exercise prompt="When would a stack be wrong for a print queue?">A printer should usually serve the earliest accepted job. LIFO would let new jobs repeatedly delay older ones; use a FIFO queue.</Exercise>

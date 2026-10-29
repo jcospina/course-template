@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "preset": "postgres",
+  "title": "restock",
+  "sources": {
+    "/query.sql": "files/query.sql"
+  },
+  "checks": {
+    "kind": "sql-state",
+    "cases": [
+      {
+        "name": "only Pen grows",
+        "query": "SELECT name, stock FROM items ORDER BY name;",
+        "columns": [
+          "name",
+          "stock"
+        ],
+        "rows": [
+          [
+            "Book",
+            2
+          ],
+          [
+            "Cup",
+            0
+          ],
+          [
+            "Pen",
+            5
+          ]
+        ],
+        "ordered": true
+      }
+    ]
+  },
+  "verification": {
+    "starterChecks": "fail",
+    "rejectedSources": {
+      "/query.sql": "rejected/query.sql"
+    }
+  },
+  "solutionSources": {
+    "/query.sql": "solution/query.sql"
+  },
+  "database": {
+    "seed": "data/seed.sql"
+  }
+}

@@ -1,0 +1,7 @@
+Binary search requires sorted input. At each step, compare the midpoint with the target and discard a region that cannot contain it. For inclusive bounds, moving low to mid repeats the same midpoint in a two-element interval. Move past the inspected element so the interval strictly shrinks.
+
+<CodeExercise example="search" prompt="Return the index of a present value, or -1 for a missing value, in an ascending array.">Use low = mid + 1 after a smaller midpoint and high = mid - 1 after a larger midpoint. The remaining interval retains every possible match while excluding the inspected wrong midpoint. An empty interval proves absence under the sorted-input precondition.</CodeExercise>
+
+<Exercise prompt="Without the solution, adapt the contract to return the first matching position when duplicates exist. Explain which half remains possible after equality.">Record the equal midpoint as a candidate and continue to its left. Returning on the first equality gives some match, which may not be the first. Test a duplicate run at the start, middle, and end, and an absent target. Explain why the interval shrinks in all branches.</Exercise>
+
+On a later visit, reconstruct the stack and queue invariants without rereading. Choose between linear search and sorting followed by binary search for one query on unsorted data: account for sorting work before claiming logarithmic total cost.

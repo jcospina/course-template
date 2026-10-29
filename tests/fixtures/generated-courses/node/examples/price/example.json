@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "preset": "node",
+  "title": "price",
+  "sources": {
+    "/index.js": "files/index.js"
+  },
+  "checks": {
+    "kind": "node-assert",
+    "sources": {
+      "/price.test.js": "checks/price.test.js"
+    }
+  },
+  "verification": {
+    "starterChecks": "fail",
+    "rejectedSources": {
+      "/index.js": "rejected/index.js"
+    }
+  },
+  "solutionSources": {
+    "/index.js": "solution/index.js"
+  }
+}

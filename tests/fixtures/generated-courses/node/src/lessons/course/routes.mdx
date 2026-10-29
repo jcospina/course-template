@@ -1,0 +1,7 @@
+An HTTP request supplies a method and path. The response supplies a status, headers, and body. Sending valid JSON text without its content-type leaves clients to guess how to interpret it. A server continues listening after one response, so Run startup and request completion are different events.
+
+<CodeExercise example="health" prompt={"Serve GET /health with status 200, application/json, and the JSON body {\"ok\":true}; return 404 elsewhere."}>Select the method and URL before producing the successful response. End every branch. A handler that returns the same successful body on every path passes the happy path and fails the missing-route case.</CodeExercise>
+
+Send both authored paths yourself and inspect status, headers, and body. The panel uses the sandbox's server bridge; the declared port is not a port on your computer. Nodebox supports browser-compatible APIs, not native addons or unrestricted sockets.
+
+The [Node HTTP API](https://nodejs.org/api/http.html) documents the request/response interfaces; verify each taught operation in this runtime before expanding the course.

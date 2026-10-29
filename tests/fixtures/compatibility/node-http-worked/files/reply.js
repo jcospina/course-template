@@ -1,0 +1,1 @@
+exports.reply=(req,res)=>{console.log("incoming",req.method,typeof req.on,req.headers["x-example"]);let body="";req.on("data",chunk=>body+=chunk);req.on("end",()=>{res.statusCode=201;res.setHeader("content-type","application/json");res.end(JSON.stringify({body,method:req.method,header:req.headers["x-example"]}));});};
